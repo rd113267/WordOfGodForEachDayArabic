@@ -1,4 +1,4 @@
-package com.wordofgodforeachday;
+package com.wordofgodforeachday.arabic;
 
 import android.os.Bundle;
 import android.os.PersistableBundle;

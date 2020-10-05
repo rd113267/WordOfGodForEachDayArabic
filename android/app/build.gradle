@@ -138,11 +138,11 @@ android {
     }
 
     defaultConfig {
-        applicationId "com.wordofgodforeachday"
+        applicationId "com.wordofgodforeachday.arabic"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode 34
-        versionName "1.0.9"
+        versionCode 1
+        versionName "1.0.0"
         multiDexEnabled true
     }
     splits {

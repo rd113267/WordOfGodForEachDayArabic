@@ -1,4 +1,4 @@
-package com.wordofgodforeachday;
+package com.wordofgodforeachday.arabic;
 
 import android.app.Application;
 import android.content.Context;

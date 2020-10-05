@@ -10,7 +10,7 @@
       "client_info": {
         "mobilesdk_app_id": "1:622115831035:android:1964742bb870961def845e",
         "android_client_info": {
-          "package_name": "com.wordofgodforeachday"
+          "package_name": "com.wordofgodforeachday.arabic"
         }
       },
       "oauth_client": [
@@ -35,7 +35,7 @@
               "client_id": "622115831035-q4ec2a99lnocvrd7luvv7ndtgok8b1da.apps.googleusercontent.com",
               "client_type": 2,
               "ios_info": {
-                "bundle_id": "com.wordofgodforeachday"
+                "bundle_id": "com.wordofgodforeachday.arabic"
               }
             }
           ]

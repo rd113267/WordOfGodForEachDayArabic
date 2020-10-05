@@ -1,4 +1,4 @@
-import { StyleSheet } from 'react-native';
+import { Platform, StyleSheet } from 'react-native';
 
 export default StyleSheet.create({
   modal: {
@@ -64,5 +64,11 @@ export default StyleSheet.create({
     backgroundColor: 'rgba(0, 0, 0, 0.6)',
     padding: 5,
     borderRadius: 10,
-  }
+  },
+  arabic: {
+    fontFamily: Platform.OS === 'ios' ? 'ScheherazadeOTM2A-Regular' : 'ScheherazadeOTM2A',
+  },
+  arabicBold: {
+    fontFamily: Platform.OS === 'ios' ? 'ScheherazadeOTM2A-Regular' : 'Scheherazade-Bold',
+  },
 });
