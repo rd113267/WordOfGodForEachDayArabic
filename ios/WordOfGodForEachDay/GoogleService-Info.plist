@@ -3,21 +3,21 @@
 <plist version="1.0">
 <dict>
 	<key>CLIENT_ID</key>
-	<string>622115831035-q4ec2a99lnocvrd7luvv7ndtgok8b1da.apps.googleusercontent.com</string>
+	<string>596592527635-g3sm0bf42g8jekqe2grohsmsorcqs332.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.622115831035-q4ec2a99lnocvrd7luvv7ndtgok8b1da</string>
+	<string>com.googleusercontent.apps.596592527635-g3sm0bf42g8jekqe2grohsmsorcqs332</string>
 	<key>API_KEY</key>
-	<string>AIzaSyCDwflmd0KiGkKc2lbeBNNXzxU-oaQBxzI</string>
+	<string>AIzaSyAfDNa3iI8k292d6lcu4KxwBbiJq4sI7sU</string>
 	<key>GCM_SENDER_ID</key>
-	<string>622115831035</string>
+	<string>596592527635</string>
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
 	<string>com.wordofgodforeachday.arabic</string>
 	<key>PROJECT_ID</key>
-	<string>word-of-god-for-each-day</string>
+	<string>wordofgodforeachdayarabic</string>
 	<key>STORAGE_BUCKET</key>
-	<string>word-of-god-for-each-day.appspot.com</string>
+	<string>wordofgodforeachdayarabic.appspot.com</string>
 	<key>IS_ADS_ENABLED</key>
 	<false></false>
 	<key>IS_ANALYTICS_ENABLED</key>
@@ -29,8 +29,8 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:622115831035:ios:0b1e15c7dadb966fef845e</string>
+	<string>1:596592527635:ios:67569ae0d3d5a4eee632e6</string>
 	<key>DATABASE_URL</key>
-	<string>https://word-of-god-for-each-day.firebaseio.com</string>
+	<string>https://wordofgodforeachdayarabic.firebaseio.com</string>
 </dict>
 </plist>
