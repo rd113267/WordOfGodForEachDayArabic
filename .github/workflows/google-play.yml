@@ -13,12 +13,11 @@ jobs:
           yarn
       - name: Build android aab
         run: |
-          echo fs.inotify.max_user_watches=524288 | sudo tee -a /etc/sysctl.conf && sudo sysctl -p
           cd android
-          echo "MYAPP_UPLOAD_KEY_ALIAS=${{ secrets.AWAL_I_WASS_ARABIC_UPLOAD_KEY_ALIAS }}" >> gradle.properties
-          echo "MYAPP_UPLOAD_STORE_FILE=${{ secrets.AWAL_I_WASS_ARABIC_UPLOAD_STORE_FILE }}" >> gradle.properties
-          echo "MYAPP_UPLOAD_STORE_PASSWORD=${{ secrets.AWAL_I_WASS_ARABIC_UPLOAD_STORE_PASSWORD }}" >> gradle.properties
-          echo "MYAPP_UPLOAD_KEY_PASSWORD=${{ secrets.AWAL_I_WASS_ARABIC_UPLOAD_KEY_PASSWORD }}" >> gradle.properties
+          echo "AWAL_I_WASS_ARABIC_UPLOAD_KEY_ALIA=${{ secrets.AWAL_I_WASS_ARABIC_UPLOAD_KEY_ALIAS }}" >> gradle.properties
+          echo "AWAL_I_WASS_ARABIC_UPLOAD_STORE_FILE=${{ secrets.AWAL_I_WASS_ARABIC_UPLOAD_STORE_FILE }}" >> gradle.properties
+          echo "AWAL_I_WASS_ARABIC_UPLOAD_STORE_PASSWORDD=${{ secrets.AWAL_I_WASS_ARABIC_UPLOAD_STORE_PASSWORD }}" >> gradle.properties
+          echo "AWAL_I_WASS_ARABIC_UPLOAD_KEY_PASSWORD=${{ secrets.AWAL_I_WASS_ARABIC_UPLOAD_KEY_PASSWORD }}" >> gradle.properties
           ./gradlew bundleRelease
       - name: upload bundle to Google Play
         uses: r0adkll/upload-google-play@v1
