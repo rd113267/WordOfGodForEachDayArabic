@@ -14,8 +14,8 @@ jobs:
       - name: Build android apk
         run: |
           cd android
-          echo "AWAL_I_WASS_ARABIC_UPLOAD_KEY_ALIA=${{ secrets.AWAL_I_WASS_ARABIC_UPLOAD_KEY_ALIAS }}" >> gradle.properties
-          echo "AWAL_I_WASS_ARABIC_UPLOAD_STORE_FILEE=${{ secrets.AWAL_I_WASS_ARABIC_UPLOAD_STORE_FILE }}" >> gradle.properties
+          echo "AWAL_I_WASS_ARABIC_UPLOAD_KEY_ALIAS=${{ secrets.AWAL_I_WASS_ARABIC_UPLOAD_KEY_ALIAS }}" >> gradle.properties
+          echo "AWAL_I_WASS_ARABIC_UPLOAD_STORE_FILE=${{ secrets.AWAL_I_WASS_ARABIC_UPLOAD_STORE_FILE }}" >> gradle.properties
           echo "AWAL_I_WASS_ARABIC_UPLOAD_STORE_PASSWORD=${{ secrets.AWAL_I_WASS_ARABIC_UPLOAD_STORE_PASSWORD }}" >> gradle.properties
           echo "AWAL_I_WASS_ARABIC_UPLOAD_KEY_PASSWORD=${{ secrets.AWAL_I_WASS_ARABIC_UPLOAD_KEY_PASSWORD }}" >> gradle.properties
           ./gradlew assembleRelease
