@@ -11,10 +11,11 @@ export default StyleSheet.create({
     borderRadius: 4,
   },
   modalText: {
-    fontSize: 20,
+    fontSize: 25,
     lineHeight: 35,
     marginBottom: 20,
     textAlign: 'center',
+    fontFamily: Platform.OS === 'ios' ? 'ScheherazadeOTM2A-Regular' : 'ScheherazadeOTM2A',
   },
   buttonModal: {
     position: 'absolute',
