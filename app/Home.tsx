@@ -52,7 +52,7 @@ const Home: FunctionComponent = () => {
         await AsyncStorage.setItem(storageKey, dateString);
         const now = moment();
         const time = __DEV__
-          ? { hour: 20, minutes: 32, second: 0, millisecond: 0 } // use this for testing notifications
+          ? { hour: 22, minutes: 57, second: 0, millisecond: 0 } // use this for testing notifications
           : { hour: 17, minutes: 0, second: 0, millisecond: 0 };
         const notifTime = moment().set(time);
         const notifDate = now.isAfter(notifTime) ? notifTime.add(1, 'd') : notifTime;
@@ -63,6 +63,7 @@ const Home: FunctionComponent = () => {
             message: 'سفلد-اس تزعمت س-رّجا ءيصحان.',
             date: notifDate.toDate(),
             repeatType: 'day',
+            allowWhileIdle: true,
           });
         } else {
           PushNotification.createChannel(
@@ -77,6 +78,7 @@ const Home: FunctionComponent = () => {
                   message: 'سفلد-اس تزعمت س-رّجا ءيصحان.',
                   date: notifDate.toDate(),
                   repeatType: 'day',
+                  allowWhileIdle: true,
                 });
               } else {
                 Alert.alert('Error', 'Failed to created notification channel');
