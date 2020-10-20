@@ -291,7 +291,7 @@ const Home: FunctionComponent = () => {
           <View style={styles.detailsContainer}>
             <Image source={require('./logo.png')} resizeMode="contain" style={{ width: 60, height: 60, margin: 10 }} />
             <View style={{ flex: 1 }}>
-              <Text style={[{ marginBottom: 10, fontSize: 20 }, styles.arabic]}> اوال ءي-واسّ</Text>
+              <Text style={[{ marginBottom: 10, fontSize: 21 }, styles.arabic]}> اوال ءي-واسّ</Text>
               <Text style={{ marginBottom: 10, fontSize: 20, color: '#989898' }}>{verse}</Text>
               <Text style={{ fontSize: 16, color: '#989898' }}>{moment().format('DD/MM/YYYY')}</Text>
               {__DEV__ && (
@@ -309,7 +309,7 @@ const Home: FunctionComponent = () => {
                   icon="repeat"
                   uppercase={false}
                   style={{ margin: 10 }}
-                  labelStyle={[styles.arabic, { fontSize: 18 }]}
+                  labelStyle={[styles.arabic, { fontSize: 19 }]}
                   onPress={() => {
                     if (verseRef.current) {
                       verseRef.current.seek(0);
@@ -327,7 +327,7 @@ const Home: FunctionComponent = () => {
                   icon="menu"
                   uppercase={false}
                   style={{ margin: 10 }}
-                  labelStyle={[styles.arabic, { fontSize: 18 }]}
+                  labelStyle={[styles.arabic, { fontSize: 19 }]}
                   onPress={() => {
                     if (chapterRef.current) {
                       chapterRef.current.seek(0);
@@ -345,7 +345,7 @@ const Home: FunctionComponent = () => {
                   icon="book"
                   uppercase={false}
                   style={{ margin: 10 }}
-                  labelStyle={[styles.arabic, { fontSize: 18 }]}
+                  labelStyle={[styles.arabic, { fontSize: 19 }]}
                   onPress={() => {
                     if (bibleRef.current) {
                       const newBook = getRandomInt(0, 65);
@@ -374,7 +374,7 @@ const Home: FunctionComponent = () => {
                   icon="web"
                   uppercase={false}
                   style={{ margin: 10 }}
-                  labelStyle={[styles.arabic, { fontSize: 18 }]}
+                  labelStyle={[styles.arabic, { fontSize: 19 }]}
                   onPress={() => Linking.openURL('http://www.tachelhit.info')}
                 >
                   كشم س-دار تاكات-نغ
@@ -384,7 +384,7 @@ const Home: FunctionComponent = () => {
                   icon="whatsapp"
                   uppercase={false}
                   style={{ margin: 10 }}
-                  labelStyle={[styles.arabic, { fontSize: 18 }]}
+                  labelStyle={[styles.arabic, { fontSize: 19 }]}
                   onPress={async () => {
                     try {
                       await Linking.openURL(`whatsapp://send?phone=${PHONE_NUMBER}`);
