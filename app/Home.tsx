@@ -52,7 +52,7 @@ const Home: FunctionComponent = () => {
         await AsyncStorage.setItem(storageKey, dateString);
         const now = moment();
         const time = __DEV__
-          ? { hour: 22, minutes: 57, second: 0, millisecond: 0 } // use this for testing notifications
+          ? { hour: 18, minutes: 49, second: 0, millisecond: 0 } // use this for testing notifications
           : { hour: 17, minutes: 0, second: 0, millisecond: 0 };
         const notifTime = moment().set(time);
         const notifDate = now.isAfter(notifTime) ? notifTime.add(1, 'd') : notifTime;
@@ -291,7 +291,7 @@ const Home: FunctionComponent = () => {
           <View style={styles.detailsContainer}>
             <Image source={require('./logo.png')} resizeMode="contain" style={{ width: 60, height: 60, margin: 10 }} />
             <View style={{ flex: 1 }}>
-              <Text style={[{ marginBottom: 10, fontSize: 21 }, styles.arabic]}> اوال ءي-واسّ</Text>
+              <Text style={[{ marginBottom: 10, fontSize: 25 }, styles.arabic]}> اوال ءي-واسّ</Text>
               <Text style={{ marginBottom: 10, fontSize: 20, color: '#989898' }}>{verse}</Text>
               <Text style={{ fontSize: 16, color: '#989898' }}>{moment().format('DD/MM/YYYY')}</Text>
               {__DEV__ && (
@@ -309,7 +309,7 @@ const Home: FunctionComponent = () => {
                   icon="repeat"
                   uppercase={false}
                   style={{ margin: 10 }}
-                  labelStyle={[styles.arabic, { fontSize: 19 }]}
+                  labelStyle={[styles.arabic, { fontSize: 25, marginVertical: 5 }]}
                   onPress={() => {
                     if (verseRef.current) {
                       verseRef.current.seek(0);
@@ -327,7 +327,7 @@ const Home: FunctionComponent = () => {
                   icon="menu"
                   uppercase={false}
                   style={{ margin: 10 }}
-                  labelStyle={[styles.arabic, { fontSize: 19 }]}
+                  labelStyle={[styles.arabic, { fontSize: 25, marginVertical: 5 }]}
                   onPress={() => {
                     if (chapterRef.current) {
                       chapterRef.current.seek(0);
@@ -345,7 +345,7 @@ const Home: FunctionComponent = () => {
                   icon="book"
                   uppercase={false}
                   style={{ margin: 10 }}
-                  labelStyle={[styles.arabic, { fontSize: 19 }]}
+                  labelStyle={[styles.arabic, { fontSize: 25, marginVertical: 5 }]}
                   onPress={() => {
                     if (bibleRef.current) {
                       const newBook = getRandomInt(0, 65);
@@ -374,7 +374,7 @@ const Home: FunctionComponent = () => {
                   icon="web"
                   uppercase={false}
                   style={{ margin: 10 }}
-                  labelStyle={[styles.arabic, { fontSize: 19 }]}
+                  labelStyle={[styles.arabic, { fontSize: 25, marginVertical: 5 }]}
                   onPress={() => Linking.openURL('http://www.tachelhit.info')}
                 >
                   كشم س-دار تاكات-نغ
@@ -384,7 +384,7 @@ const Home: FunctionComponent = () => {
                   icon="whatsapp"
                   uppercase={false}
                   style={{ margin: 10 }}
-                  labelStyle={[styles.arabic, { fontSize: 19 }]}
+                  labelStyle={[styles.arabic, { fontSize: 25, marginVertical: 5 }]}
                   onPress={async () => {
                     try {
                       await Linking.openURL(`whatsapp://send?phone=${PHONE_NUMBER}`);
