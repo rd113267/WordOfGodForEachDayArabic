@@ -294,9 +294,6 @@ const Home: FunctionComponent = () => {
               <Text style={[{ marginBottom: 10, fontSize: 25 }, styles.arabic]}> اوال ءي-واسّ</Text>
               <Text style={{ marginBottom: 10, fontSize: 20, color: '#989898' }}>{verse}</Text>
               <Text style={{ fontSize: 16, color: '#989898' }}>{moment().format('DD/MM/YYYY')}</Text>
-              {__DEV__ && (
-                <ProgressBar style={{ marginRight: 20, marginTop: 10 }} progress={progress} color="rgb(46,56,143)" />
-              )}
             </View>
           </View>
 
