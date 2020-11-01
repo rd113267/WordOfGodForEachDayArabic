@@ -11,10 +11,10 @@
     "lint": "eslint ."
   },
   "dependencies": {
-    "@react-native-community/async-storage": "^1.11.0",
-    "@react-native-community/push-notification-ios": "^1.5.0",
-    "@react-native-firebase/app": "^8.4.5",
-    "@react-native-firebase/crashlytics": "^8.4.9",
+    "@react-native-community/async-storage": "^1.12.1",
+    "@react-native-community/push-notification-ios": "^1.7.1",
+    "@react-native-firebase/app": "^8.4.6",
+    "@react-native-firebase/crashlytics": "^8.4.11",
     "@types/jest": "^25.2.1",
     "@types/node-fetch": "^2.5.7",
     "@types/react-test-renderer": "^16.9.2",
@@ -31,7 +31,7 @@
     "react-native-vector-icons": "^6.6.0",
     "react-native-version-number": "^0.3.6",
     "react-native-video": "^4.4.5",
-    "yarn": "^1.22.4"
+    "yarn": "^1.22.10"
   },
   "devDependencies": {
     "@babel/core": "^7.9.0",
