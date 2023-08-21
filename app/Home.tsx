@@ -1,19 +1,33 @@
-import React, { FunctionComponent, useEffect, useCallback, useState, useRef } from 'react';
-import HuaweiProtectedApps from 'react-native-huawei-protected-apps';
-import { Linking, SafeAreaView, Alert, ImageBackground, View, Image, Platform } from 'react-native';
-import crashlytics from '@react-native-firebase/crashlytics';
+import React, {
+  FunctionComponent,
+  useEffect,
+  useCallback,
+  useState,
+  useRef,
+} from 'react';
+// import HuaweiProtectedApps from 'react-native-huawei-protected-apps';
+import {
+  Linking,
+  SafeAreaView,
+  Alert,
+  ImageBackground,
+  View,
+  Image,
+  Platform,
+  PermissionsAndroid,
+} from 'react-native';
 import PushNotificationIOS from '@react-native-community/push-notification-ios';
 import PushNotification from 'react-native-push-notification';
-import Video, { LoadError, OnProgressData } from 'react-native-video';
+import Video, {LoadError, OnProgressData} from 'react-native-video';
 import moment from 'moment';
 import strings from './strings';
-import bookInfo, { sequence } from './bibleRef';
-import AsyncStorage from '@react-native-community/async-storage';
-import { Button, Text, Modal, FAB, ProgressBar } from 'react-native-paper';
+import bookInfo, {sequence} from './bibleRef';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import {Button, Text, Modal, FAB, ProgressBar} from 'react-native-paper';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 import styles from './styles';
 import VersionNumber from 'react-native-version-number';
-import { getRandomInt } from './helpers';
+import {getRandomInt} from './helpers';
 import SplashScreen from 'react-native-splash-screen';
 
 const Home: FunctionComponent = () => {
@@ -36,7 +50,8 @@ const Home: FunctionComponent = () => {
   const date = moment().date();
   const month = moment().month() + 1;
   const verse = strings[month][date];
-  const rootURL = 'https://raw.githubusercontent.com/moulie415/WordOfGodForEachDay/master/files/';
+  const rootURL =
+    'https://raw.githubusercontent.com/moulie415/WordOfGodForEachDay/master/files/';
   const verseUrl = `${rootURL}verses/${month}/${date}.mp3`;
   const chapterUrl = `${rootURL}chapters/${month}/${date}.mp3`;
   const bibleUrl = `${rootURL}bible/${sequence[book]}/${chapter}.mp3`;
@@ -66,6 +81,11 @@ const Home: FunctionComponent = () => {
             allowWhileIdle: true,
           });
         } else {
+          if (Platform.Version >= 33) {
+            await PermissionsAndroid.request(
+              'android.permission.POST_NOTIFICATIONS',
+            );
+          }
           PushNotification.createChannel(
             {
               channelId: 'daily_notification',
@@ -89,16 +109,15 @@ const Home: FunctionComponent = () => {
       }
     } catch (e) {
       console.log(e);
-      crashlytics().recordError(e);
     }
   }, []);
 
   useEffect(() => {
     PushNotification.configure({
-      onRegister: (token) => {
+      onRegister: token => {
         console.log('TOKEN:', token);
       },
-      onNotification: async (notification) => {
+      onNotification: async notification => {
         if (notification.userInteraction) {
           setVersePaused(false);
           setChapterPaused(true);
@@ -125,7 +144,7 @@ const Home: FunctionComponent = () => {
       positiveText: 'PROTECTED APPS',
       negativeText: 'CANCEL',
     };
-    HuaweiProtectedApps.AlertIfHuaweiDevice(config);
+    // HuaweiProtectedApps.AlertIfHuaweiDevice(config);
   }, [setup]);
 
   const onFABPress = useCallback(() => {
@@ -138,7 +157,7 @@ const Home: FunctionComponent = () => {
     }
   }, [biblePaused, chapterPaused, versePaused, playingBible, playingChapter]);
 
-  const onVerseBuffer = ({ isBuffering }: { isBuffering: boolean }) => {
+  const onVerseBuffer = ({isBuffering}: {isBuffering: boolean}) => {
     setVerseLoading(isBuffering);
   };
 
@@ -150,7 +169,7 @@ const Home: FunctionComponent = () => {
     setVerseLoading(false);
   };
 
-  const onChapterBuffer = ({ isBuffering }: { isBuffering: boolean }) => {
+  const onChapterBuffer = ({isBuffering}: {isBuffering: boolean}) => {
     setChapterLoading(isBuffering);
   };
 
@@ -162,7 +181,7 @@ const Home: FunctionComponent = () => {
     setChapterLoading(false);
   };
 
-  const onBibleBuffer = ({ isBuffering }: { isBuffering: boolean }) => {
+  const onBibleBuffer = ({isBuffering}: {isBuffering: boolean}) => {
     setBibleLoading(isBuffering);
   };
 
@@ -180,24 +199,24 @@ const Home: FunctionComponent = () => {
     setChapterPaused(true);
     console.log(e);
     if (playingBible) {
-      crashlytics().log('bible url: ' + bibleUrl);
       console.log('bible url', bibleUrl);
     } else if (playingChapter) {
-      crashlytics().log('chapter url: ' + chapterUrl);
       console.log('chapter url', chapterUrl);
     } else {
-      crashlytics().log('verse url: ' + verseUrl);
       console.log('verse url', verseUrl);
     }
-    crashlytics().recordError(new Error(e.error.errorString));
     Alert.alert('Error', e.error.errorString);
   };
 
-  const onProgress = useCallback(({ currentTime, playableDuration }: OnProgressData) => {
-    setProgress(currentTime / playableDuration);
-  }, []);
+  const onProgress = useCallback(
+    ({currentTime, playableDuration}: OnProgressData) => {
+      setProgress(currentTime / playableDuration);
+    },
+    [],
+  );
 
-  const buttonsVisible = versePaused && chapterPaused && biblePaused && !modalVisible;
+  const buttonsVisible =
+    versePaused && chapterPaused && biblePaused && !modalVisible;
   const loading = verseLoading || chapterLoading || bibleLoading;
   return (
     <>
@@ -205,7 +224,7 @@ const Home: FunctionComponent = () => {
         paused={versePaused}
         onProgress={onProgress}
         audioOnly
-        source={{ uri: verseUrl }} // Can be a URL or a local file.
+        source={{uri: verseUrl}} // Can be a URL or a local file.
         ref={verseRef} // Store reference
         onBuffer={onVerseBuffer} // Callback when remote video is buffering
         onLoad={onVerseLoad}
@@ -227,7 +246,7 @@ const Home: FunctionComponent = () => {
         paused={chapterPaused}
         onProgress={onProgress}
         audioOnly
-        source={{ uri: chapterUrl }} // Can be a URL or a local file.
+        source={{uri: chapterUrl}} // Can be a URL or a local file.
         ref={chapterRef} // Store reference
         onBuffer={onChapterBuffer} // Callback when remote video is buffering
         onLoad={onChapterLoad}
@@ -249,7 +268,7 @@ const Home: FunctionComponent = () => {
         paused={biblePaused}
         onProgress={onProgress}
         audioOnly
-        source={{ uri: bibleUrl }} // Can be a URL or a local file.
+        source={{uri: bibleUrl}} // Can be a URL or a local file.
         ref={bibleRef} // Store reference
         onBuffer={onBibleBuffer} // Callback when remote video is buffering
         onLoad={onBibleLoad}
@@ -270,8 +289,6 @@ const Home: FunctionComponent = () => {
                 setChapter(chapter + 1);
               }
             } catch (e) {
-              crashlytics().log('book: ' + book);
-              crashlytics().recordError(e);
               Alert.alert('Error', e.message);
             }
           }
@@ -284,10 +301,9 @@ const Home: FunctionComponent = () => {
         style={styles.imgBackground}
         resizeMode="cover"
         source={require('./background.png')}
-        onLoadEnd={() => SplashScreen.hide()}
-      >
+        onLoadEnd={() => SplashScreen.hide()}>
         {/* <View style={styles.overlay} /> */}
-        <SafeAreaView style={{ flex: 1 }}>
+        <SafeAreaView style={{flex: 1}}>
           <View style={styles.detailsContainer}>
             <Image source={require('./logo.png')} resizeMode="contain" style={{ width: 60, height: 60, margin: 10 }} />
             <View style={{ flex: 1 }}>
@@ -356,8 +372,6 @@ const Home: FunctionComponent = () => {
                         setPlayingChapter(false);
                         setTimeout(() => setBiblePaused(false), 250);
                       } catch (e) {
-                        crashlytics().log('book: ' + newBook);
-                        crashlytics().recordError(e);
                         Alert.alert('Error', e.message);
                       }
                     }
@@ -384,9 +398,10 @@ const Home: FunctionComponent = () => {
                   labelStyle={[styles.arabic, { fontSize: 25, marginVertical: 5 }]}
                   onPress={async () => {
                     try {
-                      await Linking.openURL(`whatsapp://send?phone=${PHONE_NUMBER}`);
+                      await Linking.openURL(
+                        `whatsapp://send?phone=${PHONE_NUMBER}`,
+                      );
                     } catch (e) {
-                      crashlytics().recordError(e);
                       Alert.alert('Error', e.message);
                     }
                   }}
@@ -398,14 +413,18 @@ const Home: FunctionComponent = () => {
           )}
           <FAB
             style={styles.fab}
-            icon={versePaused && chapterPaused && biblePaused ? 'play' : 'pause'}
+            icon={
+              versePaused && chapterPaused && biblePaused ? 'play' : 'pause'
+            }
             loading={loading}
             onPress={onFABPress}
           />
           <View style={styles.versionDetail}>
             <Text
-              style={{ color: '#fff', fontSize: 12 }}
-            >{`${VersionNumber.appVersion} (${VersionNumber.buildVersion})`}</Text>
+              style={{
+                color: '#fff',
+                fontSize: 12,
+              }}>{`${VersionNumber.appVersion} (${VersionNumber.buildVersion})`}</Text>
           </View>
         </SafeAreaView>
       </ImageBackground>
@@ -415,8 +434,7 @@ const Home: FunctionComponent = () => {
         onDismiss={() => {
           setModalVisible(false);
           setVersePaused(false);
-        }}
-      >
+        }}>
         <Text style={styles.modalText}>
           اسّ ف-واسّ راد-اك-نتازن اوال ءيميمن غ-وارّاتن ن-سيدي ربّي. سفلد-اس ار-تّزاعمت س-رّجا ءيصحان.
         </Text>
@@ -425,8 +443,7 @@ const Home: FunctionComponent = () => {
           onPress={() => {
             setModalVisible(false);
             setVersePaused(false);
-          }}
-        >
+          }}>
           <Icon name="keyboard-return" size={30} />
         </Button>
       </Modal>
