@@ -8,7 +8,6 @@ import React, {
 // import HuaweiProtectedApps from 'react-native-huawei-protected-apps';
 import {
   Linking,
-  SafeAreaView,
   Alert,
   ImageBackground,
   View,
@@ -18,17 +17,18 @@ import {
 } from 'react-native';
 import PushNotificationIOS from '@react-native-community/push-notification-ios';
 import PushNotification from 'react-native-push-notification';
-import Video, {LoadError, OnProgressData} from 'react-native-video';
+import Video, {OnVideoErrorData, OnProgressData} from 'react-native-video';
 import moment from 'moment';
 import strings from './strings';
 import bookInfo, {sequence} from './bibleRef';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {Button, Text, Modal, FAB, ProgressBar} from 'react-native-paper';
-import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+import Icon from '@react-native-vector-icons/material-icons';
 import styles from './styles';
 import VersionNumber from 'react-native-version-number';
 import {getRandomInt} from './helpers';
 import SplashScreen from 'react-native-splash-screen';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 const Home: FunctionComponent = () => {
   const PHONE_NUMBER = '+212642596841';
@@ -193,7 +193,7 @@ const Home: FunctionComponent = () => {
     setBibleLoading(false);
   };
 
-  const onError = (e: LoadError) => {
+  const onError = (e: OnVideoErrorData) => {
     setVersePaused(true);
     setBiblePaused(true);
     setChapterPaused(true);
@@ -218,6 +218,8 @@ const Home: FunctionComponent = () => {
   const buttonsVisible =
     versePaused && chapterPaused && biblePaused && !modalVisible;
   const loading = verseLoading || chapterLoading || bibleLoading;
+
+  console.log(verseUrl)
   return (
     <>
       <Video
